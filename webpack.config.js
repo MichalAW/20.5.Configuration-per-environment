@@ -1,17 +1,43 @@
-//webpack.config.js
-module.exports = (env) => {
-    const environment = env || 'production';
+const path = require('path');
 
-    return {
-        mode: environment,
-        entry: './src/app.js',
-        output: {
-            path: path.resolve(__dirname, 'build'),
-            filename: 'app.' + environment + '.bundle.js'
+module.exports = {
+    entry: './src/index.js',
+    output: {
+        path: path.resolve(__dirname, 'build'),
+        filename: 'app.bundle.js'
+    },
+    module: {
+        rules: [{
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: {
+                loader: "babel-loader"
+            }
         },
-    }
-    
-    optimization: {
-        minimize: false
-    }
+        {
+            test: /\.css$/,
+            use: [{
+                loader: 'style-loader'
+            },
+            {
+                loader: 'css-loader',
+                options: {
+                    modules: true
+                }
+            }
+            ]
+        }
+        ]
+    },
+    devServer: {
+        contentBase: './build',
+        publicPath: '/',
+        historyApiFallback: {
+            index: '/index.html'
+        },
+        port: 3000,
+        hot: true,
+        compress: false,
+        disableHostCheck: true,
+    },
 };
