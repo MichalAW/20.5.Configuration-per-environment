@@ -4,8 +4,9 @@
     "description": "",
     "main": "script.js",
     "scripts": {
-        "start": "webpack--env.NODE_ENV = local",
-        "build": "webpack--production--env.NODE_ENV = production"
+        "start": "webpack-dev-server --mode=development",
+        "build": "webpack --mode=production",
+        "development": "webpack --mode=development"
     },
     "repository": {
         "type": "git",
