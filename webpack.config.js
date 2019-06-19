@@ -5,7 +5,7 @@ module.exports = function(env) {
         mode: env.production ? 'production' : 'development',
         entry: './src/app.js',
         output: {
-            path: env.path.resolve(__dirname, 'build'),
+            path: path.resolve(__dirname, 'build'),
             filename: 'app.bundle.js'
         },
         module: {
