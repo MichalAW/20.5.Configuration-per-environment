@@ -1,10 +1,10 @@
 const path = require('path');
 
-module.exports = function() {
+module.exports = function(env) {
     return {
         entry: './src/app.js',
         output: {
-            path: path.resolve(__dirname, 'build'),
+            path: env.path.resolve(__dirname, 'build'),
             filename: 'app.bundle.js'
         },
         module: {
